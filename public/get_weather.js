@@ -24,18 +24,16 @@ document.addEventListener("DOMContentLoaded", function() {
     city.id = "city";
     document.body.appendChild(city);
     // below sets up data object
-    var weatherData = {};
-    weatherData.humidity = data.main.humidity;
-    weatherData.temp = data.main.temp;
-    weatherData.rain = data.rain['1h'];
-    weatherData.description = data.description.description;
-    weatherData.wind = data.wind.speed;
-    console.log(weatherData);
 
     var cityWeatherList = document.createElement("ul");
+    document.body.appendChild(cityWeatherList);
 
-    for (key in weatherData) {
-      console.log(key + " " + weatherData[key])
+    for (key in data) {
+      console.log(key + " " + data[key])
+      var weatherDataPoint = document.createElement("li");
+      weatherDataPoint.textContent = key + ": " + data[key];
+      weatherDataPoint.id = key;
+      cityWeatherList.appendChild(weatherDataPoint);
     }
     
   }
@@ -45,7 +43,14 @@ document.addEventListener("DOMContentLoaded", function() {
     var link = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=45683852bbe910d7d9147f78f770c0b7";
     // calling fetch data function
     fetchWeather(link, function(data) {
-      addToDom(data)
+      var weatherData = {};
+      weatherData.humidity = data.main.humidity;
+      weatherData.temp = data.main.temp;
+      weatherData.description = data.weather[0].description;
+      weatherData.wind = data.wind.speed;
+      console.log(weatherData);
+      addToDom(weatherData)
+
       //console.log(data);
     }) // ends apiCall function
   } 
