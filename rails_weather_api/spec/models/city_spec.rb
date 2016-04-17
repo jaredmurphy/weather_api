@@ -1,15 +1,15 @@
 require 'rails_helper'
 
+# model testing
 RSpec.describe City, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
   describe City
      it "has a valid factory" do
        FactoryGirl.build(:city).should be_valid
      end
- 
-     it "is invalid without a name" do 
-       FactoryGirl.build(:city, :name => nil).should_not be_valid
-     end
+
+     it "is invalid without an id" do
+        FactoryGirl.build(:city, :id => nil).should_not be_valid
+     end  
  
      it "is invalid without a humidity" do 
        FactoryGirl.build(:city, :humidity => nil).should_not be_valid
@@ -26,4 +26,9 @@ RSpec.describe City, type: :model do
      it "is invalid without a wind" do 
        FactoryGirl.build(:city, :description => nil).should_not be_valid
      end
- end
+
+     it "is invalid without a name" do 
+       FactoryGirl.build(:city, :name => nil).should_not be_valid
+     end
+end
+

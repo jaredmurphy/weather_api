@@ -4,4 +4,5 @@ class City < ActiveRecord::Base
   validates :wind, presence: true
   validates :humidity, presence: true
   validates :temp, presence: true
+  validates :id, presence: true
 end

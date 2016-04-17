@@ -12,10 +12,20 @@
     
     def new 
       @city = City.new
+      render :nothing => true
     end
 
     def create
-      @city = City.new(city_params)
+      @city = City.new(params[:city])
+      respond_to do |format|
+         if @city.save
+            format.json { render json: @city, status: :created }
+         else
+            format.json { render json: @city.errors, status:
+            unprocessable_entity }
+         end
+      end
     end
+
   end
 

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/api/v1/cities" => "api/v1/cities#index"
+  get "/api/v1/cities.json" => "api/v1/cities#index"
   get "/api/v1/cities/:id" => "api/v1/cities#show"
   get "api/v1/cities/new" => "api/v1/cities#new"
   post "/api/v1/cities/new" => "api/v1/cities#create"

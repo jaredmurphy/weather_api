@@ -8,5 +8,6 @@ FactoryGirl.define do
     city.temp { Faker::Number.decimal(2) }    
     city.description { Faker::Commerce.product_name }
     city.wind { Faker::Number.decimal(2) } 
+    city.id { Faker::Address.zip }
   end
 end
