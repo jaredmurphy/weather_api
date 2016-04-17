@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   // function to call api data
-  function fetchWeather(path, callback) {
+  function fetchData(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
       if (httpRequest.readyState === 4) {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }; // ends httpRequest.onreadystate
     httpRequest.open("GET", path);
     httpRequest.send();
-  } // ends fetchWeather function
+  } // ends fetchData function
 
   var addToDom = function(data) {
     // below sets up data object
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var apiCall = function(city) {
     var link = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=45683852bbe910d7d9147f78f770c0b7";
     // calling fetch data function
-    fetchWeather(link, function(data) {
+    fetchData(link, function(data) {
       var weatherData = {};
       weatherData.city = data.name
       weatherData.humidity = data.main.humidity;
@@ -49,9 +49,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }) // ends feetchWeather function
   } // ends apiCall function
 
+
+  var dataBaseCall = function() {
+    //http://localhost:3000/api/v1/cities
+    var link = "http://localhost:3000/api/v1/cities"
+    fetchData(link, function(data) {
+      data.forEach(function(city) {
+        relevantData = {}
+        relevantData.name = city.name
+        relevantData.humidity = city.humidity
+        relevantData.temp = city.temp
+        relevantData.description = city.description
+        relevantData.wind = city.wind
+        console.log(city);
+        addToDom(relevantData);
+      });
+    })
+  };
+   //     var weatherData = {};
+
   var input = document.getElementById('city');
   var submitButton = document.getElementById('submit');
 
+  
+  
+  dataBaseCall();
   submitButton.onclick = function() {
     apiCall(input.value);
     input.value = "";
