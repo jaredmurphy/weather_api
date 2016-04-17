@@ -22,22 +22,28 @@ RSpec.describe Api::V1::CitiesController, type: :controller do
     end #ends GET #new
     
     describe "Post #create" do 
-        it 'creates city' do 
-            city_params = FactoryGirl.attributes_for(:city)
-            expect { post :create, :city => city_params }.to change(City,
-            :count).by(1)
+        it "returns a 200 http status" do
+            post :create
+            expect(response).to be_success
         end
         context 'with valid attributes' do 
+            it 'creates city' do 
+                city_attributes = FactoryGirl.attributes_for(:city)
+                post :create, city: city_attributes
+                response.should redirect_to(root_path)
+                City.last.name === post_attributes[:name]
+            end
             it 'creates city' do 
                 post :create, city: attributes_for(:city)
                 expect(City.count).to eq(1)
             end
-        end
+          end
         
         context 'with invalid attributes' do 
-            it 'does not create the city' do 
-                post :create, city: attributes_for(:city, name: nil)
-                expect(Vehicle.count).to eq(0)
+            it 'displays new on create failure' do 
+                post :create, city: {name: "something"}
+                response.should redirect_to(new_post_path)
+                flash[:error].should include("error message")
             end
         end
     end # ends Post #create
