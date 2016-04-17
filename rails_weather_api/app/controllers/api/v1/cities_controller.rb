@@ -9,6 +9,13 @@
       @city = City.find(params[:id])
       render json: @city
     end
+    
+    def new 
+      @city = City.new
+    end
 
+    def create
+      @city = City.new(city_params)
+    end
   end
 
