@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  namespace :api do 
-    resources :cities
-  end
+  get "/api/v1/cities" => "api/v1/cities#index"
+  get "/api/v1/cities/:id" => "api/v1/cities#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
