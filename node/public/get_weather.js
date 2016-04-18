@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var dataBaseCall = function() {
     //http://localhost:3000/api/v1/cities
-    var link = "http://localhost:3000/api/v1/cities"
+    var link = "http://localhost:3000/api/v1/cities.json"
     fetchData(link, function(data) {
       data.forEach(function(city) {
         relevantData = {}
