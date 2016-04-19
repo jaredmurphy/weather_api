@@ -15,7 +15,7 @@
       render :nothing => true
     end
 
-    def create
+    def create 
       @city = City.new(params[:city])
       respond_to do |format|
          if @city.save
@@ -27,5 +27,11 @@
       end
     end
 
-  end
+    private
+
+    def city_params
+        params.require(:city).permit(:name, :temp, :humidity, :description,
+        :wind)
+    end
+end
 
