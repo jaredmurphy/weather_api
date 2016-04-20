@@ -10,6 +10,13 @@ RSpec.describe Api::V1::CitiesController, type: :controller do
         end
     end # ends GET #index
 
+    describe "Get #show " do 
+        it "returns 200 HTTP status"
+            get :index, format: :json
+            expect(response).to be_success
+        end
+    end
+
     describe "GET #new" do
         it "returns a 200 http status" do
             get :new
