@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // below sets up data object
     var dataContainer = document.getElementById('dataLists');
     var cityWeatherList = document.createElement("ul");
+    cityWeatherList.classList.add("callout");
+    cityWeatherList.classList.add("secondary");
     dataContainer.insertBefore(cityWeatherList, dataContainer.firstChild)
     // below adds data to dom 
     for (key in data) {

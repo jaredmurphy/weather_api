@@ -1,17 +1,23 @@
 <!DOCTYPE>
 <html>
 <head>
-<script src="get_weather.js"></script>
-
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script   src="https://code.jquery.com/jquery-1.12.3.min.js"
+    integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
+    crossorigin="anonymous"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="get_weather.js"></script>
 </head>
 <body>  
   <div class="container">
     <h1>Enter a city to see current weather</h1>
-    <form id="cityForm">
+    <form id="cityForm"  class="medium-6 columns">
       <label for="city">City</label>
       <input type="text" id="city"/>
     </form>
-    <button id="submit" type="button" form="cityForm" value="submit">
+    </br>
+    <button id="submit" type="button" class="success button" form="cityForm" value="submit">
       Enter
     </button>
     <div id="dataLists">
